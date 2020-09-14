@@ -1,0 +1,60 @@
+<div class="container wrapper col-md-12" id="bgsignin">
+    <div class="col-md-12 wrapperSignup">
+        <div class="card card-container" id="formlog">
+            <form #cuDtoForm="ngForm" (ngSubmit)="onSignup()">
+                <div class="form-group">
+                    <label>Pseudo</label>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend3"><i class="fas fa-user"></i></span>
+                        <input type="text" minlength="3" maxlength="20" name="username" #username="ngModel"
+                            class="form-control" placeholder="Pseudo" [(ngModel)]="cuDto.username" required />
+                    </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="username.invalid && username.touched">
+                    Votre pseudo doit contenir entre 3 et 20 caractères !
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend3"><i class="fas fa-lock"></i></span>
+                        <input type="password" minlength="6" name="password" #password="ngModel" class="form-control"
+                            placeholder="Password" [(ngModel)]="cuDto.password" required password />
+                    </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="password.invalid && password.touched">
+                    Votre mot de passe doit contenir au moins 6 caractères !
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend3"><i class="fas fa-at"></i></span>
+                        <input type="email" name="email" #email="ngModel" class="form-control"
+                            placeholder="exemple@exemple.com" [(ngModel)]="cuDto.email" required email />
+                    </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+                    Votre email doit être une adresse email valide !
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-light" [disabled]="cuDtoForm.invalid" />
+                </div>
+                <div style="margin: 2rem 0 0 0;">
+                    <span class="mr-2">Vous avez déjà un compte ?</span>
+                    <a [routerLink]="['/login']" class="loginLink"><u>Connexion</u></a>
+                </div>
+            </form><br>
+            <div class="alert alert-success" *ngIf="isSuccessful">
+                Votre compte a été créé !
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="!isUsernameDispo">
+                Ce nom d'utilisateur est déjà utilisé !
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="!isEmailDispo">
+                Cet email est déjà utilisé !
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="isUsernamePassSame">
+                Votre nom d'utilisateur et votre mot de passe ne peut être identique !
+            </div>
+        </div>
+    </div>
+</div>

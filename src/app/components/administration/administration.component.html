@@ -1,0 +1,90 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">Utilisateurs</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+            aria-selected="false">Oeuvres</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+            aria-selected="false">Commandes</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+        <!--*********************************************** USERS ******************************************************-->
+        <!--************************************************************************************************************-->
+        <!--************************************************************************************************************-->
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <h3 id="titleProfile">Tous les utilisateurs</h3><br>
+        <div class="tablePresentation">
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Photo</th>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Pseudo</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td *ngIf="user.photoProfile"><img id="ppMyArt" src="{{this.userService.host+'getPhotoProfile/'+ user.id}}" alt="Photo de Profil"></td>
+                        <td *ngIf="!user.photoProfile"><img id="ppMyArt" src="assets/images/Inconnu.png" alt="Photo de Profil"></td>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td *ngIf="user.lastName">{{ user.lastName }}</td>
+                        <td id="nr" *ngIf="!user.lastName">Non renseigné</td>
+                        <td *ngIf="user.firstName">{{ user.firstName }}</td>
+                        <td id="nr" *ngIf="!user.firstName">Non renseigné</td>
+                        <td><button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Supprimer</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+        <!--*********************************************** OEUVRES ****************************************************-->
+        <!--************************************************************************************************************-->
+        <!--************************************************************************************************************-->
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <h3 id="titleProfile">Toutes les oeuvres</h3><br>
+        <div class="tablePresentation">
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Disponibilité</th>
+                        <th scope="col">Catégorie</th>
+                        <th scope="col">Sous catégorie</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let art of artworks">
+                        <td><img id="ppMyArt" src="{{this.artworkService.host+'getPhotoArtwork/'+ art.id}}" alt="Photo de l'oeuvre"></td>
+                        <td>{{ art.name }}</td>
+                        <td>{{ art.availability }}</td>
+                        <td>{{ art.category }}</td>
+                        <td>{{ art.subcategory }}</td>
+                        <td>{{ art.price }} €</td>
+                        <td><button type="button" class="btn btn-danger" (click)="userDeleteArtwork(art.id)">Supprimer</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+        <!--*********************************************** COMMANDES **************************************************-->
+        <!--************************************************************************************************************-->
+        <!--************************************************************************************************************-->
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <h3 id="titleProfile">Toutes les commandes</h3><br>
+
+    </div>
+</div>

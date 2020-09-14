@@ -1,0 +1,35 @@
+<div class="row">
+    <div *ngIf="hasPp" class="col-md-4 userPhotoPageDetails">
+        <img id="ppMyAccount" src="{{this.userService.host+'getPhotoProfile/'+artistDetails.id}}" alt="Photo de profile"><br>
+    </div>
+    <div *ngIf="!hasPp" class="col-md-4 userPhotoPageDetails">
+        <img id="ppMyAccount" src="assets/images/Inconnu.png" alt="Photo de profile inconnu"><br>
+        <p style="color: red; text-align: center; vertical-align: middle; margin: auto;">Cet utilisateur n'a pas de photo de profile</p>
+    </div>
+    <div class="col-md-8 userPage">
+        <h3 id="titleProfile">Qui est cet artiste : </h3><br>
+        <div *ngIf="artistDetails.biography" id="detailsArtistBio">
+            <h3 class="labelDetailArtist">Qui suis je ?</h3>
+            <h3 style="font-weight:unset;"><i>{{ artistDetails.biography }}</i></h3>
+        </div>
+        <div id="detailsArtist">
+            <label class="labelDetailArtist">Pseudo</label>
+            <p>{{ artistDetails.username }}</p>
+        </div>
+        <div *ngIf="artistDetails.firstName" id="detailsArtist">
+            <label class="labelDetailArtist">Prénom</label>
+            <p>{{ artistDetails.firstName }}</p>
+        </div>
+        <div *ngIf="artistDetails.lastName" id="detailsArtist">
+            <label class="labelDetailArtist">Nom</label>
+            <p>{{ artistDetails.lastName }}</p>
+        </div>
+        <div id="detailsArtist">
+            <label class="labelDetailArtist">Email</label>
+            <p>{{ artistDetails.email }}</p>
+        </div>
+        <div *ngIf="!artistDetails.biography || !artistDetails.firstName || !artistDetails.lastName">
+            <p id="uncompleteProfile">Pour certaines raisons, le profile de cet artiste n'est pas complet, il peut s'agir d'une volonté d'anonymat, veuillez respecter ceci. Merci.</p>
+        </div>
+    </div>
+</div>

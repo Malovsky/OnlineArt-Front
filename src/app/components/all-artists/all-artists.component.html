@@ -1,0 +1,38 @@
+
+
+<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <h3 id="titleProfile">Tous les utilisateurs</h3><br>
+    <div class="input-group" style="max-width: 50%; margin: 1rem auto;">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="">Rechercher un artiste</span>
+        </div>
+        <input type="text" class="form-control" placeholder="nom, prénom, pseudo, email" (input)="searchArtist(textSearch)" [(ngModel)]="textSearch" name="textSearch">
+    </div>
+    <div class="tablePresentation">
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Pseudo</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Détails</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td *ngIf="user.photoProfile"><img id="ppMyArt" src="{{this.userService.host+'getPhotoProfile/'+ user.id}}" alt="Photo de Profil"></td>
+                    <td *ngIf="!user.photoProfile"><img id="ppMyArt" src="assets/images/Inconnu.png" alt="Photo de Profil inconnu"></td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td *ngIf="user.lastName">{{ user.lastName }}</td>
+                    <td id="nr" *ngIf="!user.lastName">Non renseigné</td>
+                    <td *ngIf="user.firstName">{{ user.firstName }}</td>
+                    <td id="nr" *ngIf="!user.firstName">Non renseigné</td>
+                    <td><button [routerLink]="['/viewArtist', user.id]" type="button" class="btn btn-info">Détails</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

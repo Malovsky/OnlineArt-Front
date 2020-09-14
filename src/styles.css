@@ -1,0 +1,329 @@
+html, body {
+    font-family: 'Roboto', sans-serif;
+    height: auto;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+    height: auto;
+    width: 100%;
+    /* position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0; */
+    padding: 2rem;
+}
+
+label {
+    font-weight: bold;
+}
+
+th, td {
+    max-width: 15rem;
+    vertical-align: middle!important;
+}
+
+/***************************************************** CLASSES *****************************************************/
+
+.footerrow {
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+.errorForm {
+    color: #C02200;
+    font-weight: bold;
+
+}
+
+.wrapperLogin {
+    height: 85%;
+    width: auto;
+    max-width: 100%;
+    padding: 3rem 0;
+}
+
+.wrapperSignup {
+    height: 85%;
+    width: auto;
+    max-width: 100%;
+    padding: 3rem 0;
+    background-size: 100%;
+}
+
+.loginLink {
+    text-decoration: none;
+    color: black;
+}
+
+.fab {
+    margin: 0.5em 0.5em 0 0;
+    font-size: 1.5em;
+    color: white;
+} 
+
+.userPage {
+    padding: 1rem 1rem;
+    max-width: 60%;
+    margin: 0.5rem auto;
+    align-items: center;
+}
+
+.userPhotoPage {
+    padding: 1rem;
+}
+
+.userPhotoPageDetails {
+    padding: 1rem;
+    margin: 2rem;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: white;
+    font-weight: bold;
+    background-color: #343a40;
+    border-color: white;
+    border-radius: 1rem;
+}
+
+.tablePresentation {
+    max-width: 80%;
+    margin: 3rem auto 10rem auto;
+    
+}
+
+.labelDetailArtist {
+    color: #007BFF;
+}
+
+/***************************************************** IDS *****************************************************/
+
+#formlog {
+    margin: 1rem auto 1rem auto;
+    width: auto;
+    max-width: 40rem;
+    height: auto;
+    background-color: #A9A9A9;
+    padding: 3rem 2rem;
+    border: solid #343a40 0.3em;
+    border-radius: 2em;
+}
+
+#homeBackground {
+    background-image: url("src/assets/images/BGHOME.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    height: 20rem;
+    padding: 6rem 0px;
+}
+
+#homeFirstRow {
+    width: auto;
+    height: 20rem;
+    color: white;
+    background-color: chartreuse;
+    max-width: 20rem;
+}
+
+#col-home {
+    height: 15rem;
+    font-size: 1.2rem;
+    padding: 1rem 1rem;
+    width: 50%;
+    margin: auto auto;
+}
+
+#col-home img {
+    margin: auto auto;
+    display: block;
+    height: auto;
+    max-width: 35%;
+}
+
+#col-homeLogo {
+    background-image: url("src/assets/images/artLogo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 15rem;
+    font-size: 1.2rem;
+    padding: 1rem 1rem;
+    width: 50%;
+    margin: 1rem auto;
+}
+
+#ppMyAccountNoPhoto {
+    background-image: url("src/assets/images/inconnu.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    display: block;
+    margin: 3rem auto;
+    max-width: 80%;
+    border-radius: 10%;
+}
+
+#col-homeOne {
+    font-size: 1.5rem;
+    margin: auto auto;
+    font-style: italic;
+}
+
+#col-homeTitle {
+    color: #007BFF;
+    font-size: 1.5rem;
+    margin: 1rem auto;
+    padding-left: 14rem;
+}
+
+#bglogin {
+    background-image: url("src/assets/images/background.jpeg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 80%;
+    width: 100%;
+    margin: auto 0rem;
+    padding: auto 0rem;
+}
+
+#bgsignin {
+    background-image: url("src/assets/images/background4.jpeg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 80%;
+    width: 100%;
+    margin: auto 0rem;
+    padding: auto 0rem;
+}
+
+#welcomeHome {
+    color: white;
+    font-weight: bolder;
+    font-size: 2rem;
+    text-align: center;
+    text-shadow: 0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black, 
+    0 0 8px black;
+}
+
+#changeMDP {
+    width: 50%;
+    margin: 6rem auto;
+    padding: 1rem;
+    align-self: center;
+} 
+
+#titleProfile {
+    color: #007BFF;
+    text-align: center;
+    padding: 1rem;
+}
+
+#backgroundRowTwo {
+    background-image: url("src/assets/images/rockmono.jpg");
+    background-repeat: no-repeat;
+    margin: 1rem auto;
+    padding: 0rem 2rem;
+    background-position: center;
+}
+
+#backgroundRowThree {
+    background-image: url("src/assets/images/ecommerce.png");
+    background-repeat: no-repeat;
+    margin: 1rem auto;
+    padding: 0rem 2rem;
+    background-position: center;
+    background-size: 60%;
+}
+
+#ppMyAccount {
+    display: block;
+    margin: 3rem auto;
+    max-width: 80%;
+    border-radius: 10%;
+}
+
+#ppMyArt {
+    /* display: block; */
+    /* margin: 1rem; */
+    max-width: 20%;
+    border-radius: 10%;
+}
+
+#labelOeuvre {
+    color: #343a40;
+}
+
+#addArt {
+    padding: 1rem;
+    margin: 2rem;
+}
+
+#nr {
+    color: red;
+}
+
+#uncompleteProfile {
+    color: red;
+    text-align: center;
+    margin: 11rem 1rem;
+    font-style: italic;
+}
+
+#detailsArtistBio {
+    margin: 3rem 2rem;
+    
+}
+
+#detailsArtist {
+    margin: 2rem;
+    font-size: larger;
+}
+
+@media (max-width: 600px) {
+    #col-homeTitle {
+      padding-left: 1em;
+      
+    }
+    #col-home {
+        margin-left: 1em;
+        margin-right: auto;
+        
+      width: 80%;
+    }
+}
+
+@media (max-width: 800px) {
+    #col-homeTitle {
+      padding-left: 1em;
+      
+    }
+    #col-home {
+        margin-left: 1em;
+        margin-right: auto;
+        
+      width: 80%;
+    }
+}

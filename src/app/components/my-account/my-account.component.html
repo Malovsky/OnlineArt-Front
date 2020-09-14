@@ -1,0 +1,365 @@
+<div class="wrapper">
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="infos-tab" data-toggle="tab" href="#infos" role="tab" aria-controls="infos"
+                aria-selected="true">Mes infos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="myArtwork-tab" data-toggle="tab" href="#myArtwork" role="tab"
+                aria-controls="myArtwork" aria-selected="false">Mes oeuvres</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="myOrder-tab" data-toggle="tab" href="#myOrder" role="tab" aria-controls="myOrder"
+                aria-selected="false">Mes commandes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="changeMDP-tab" data-toggle="tab" href="#changeMDP" role="tab"
+                aria-controls="changeMDP" aria-selected="false">Changer mon mot de passe</a>
+        </li>
+    </ul>
+
+    <!--*********************************************** INFORMATION COMPTE *****************************************-->
+    <!--************************************************************************************************************-->
+    <!--************************************************************************************************************-->
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="infos" role="tabpanel" aria-labelledby="infos-tab">
+            <div class="row">
+                <div class="col-md-4 userPhotoPage" style="background-color: #EDEDED;">
+                    <img id="ppMyAccount" src="{{this.userService.host+'getPhotoProfile/'+uuDto.id}}" alt="Photo de profile"><br>
+                    <form>
+                        <div class="form-group" style="display: block; margin: 1rem auto; max-width: 50%;">
+                          <label for="exampleFormControlFile">Modifier votre photo</label>
+                          <input type="file" class="form-control-file" id="exampleFormControlFile" (change)="newPhotoProfile($event)">
+                        </div>
+                    </form>
+                    <div *ngIf="selectedFile">
+                        <button style="display: block; margin: 1rem auto; max-width: 50%;"
+                            type="button" class="btn btn-light" (click)="uploadPhoto()">Upload
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-8 userPage">
+                    <h3 id="titleProfile">Consultez ou modifiez vos informations : </h3><br>
+                    <form #uuDtoForm="ngForm" (ngSubmit)="updateUser()">
+                        <div class="form-group">
+                            <label>Pseudo</label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend3"><i
+                                        class="fas fa-user"></i></span>
+                                <input type="text" minlength="3" maxlength="20" name="username" #username="ngModel"
+                                    class="form-control" placeholder="Pseudo" [(ngModel)]="uuDto.username" required />
+                            </div>
+                        </div>
+                        <div class="alert alert-danger" *ngIf="username.invalid && username.touched">
+                            Votre pseudo doit contenir entre 3 et 20 caractères !
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend3"><i class="fas fa-at"></i></span>
+                                <input type="email" name="email" #email="ngModel" class="form-control"
+                                    [(ngModel)]="uuDto.email" required email />
+                            </div>
+                        </div>
+                        <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+                            Votre email doit être une adresse email valide !
+                        </div>
+                        <div class="form-group">
+                            <label>Prénom</label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend3"><i
+                                        class="fas fa-user"></i></span>
+                                <input type="text" name="firstName" #firstName="ngModel" class="form-control"
+                                    [(ngModel)]="uuDto.firstName" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Nom</label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend3"><i
+                                        class="fas fa-user"></i></span>
+                                <input type="text" name="lastName" #lastName="ngModel" class="form-control"
+                                    [(ngModel)]="uuDto.lastName" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Adresse</label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend3"><i
+                                        class="fas fa-map-marked-alt"></i></span>
+                                <input type="text" name="address" #address="ngModel" class="form-control"
+                                    [(ngModel)]="uuDto.address" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>En quelques mots, qui êtes vous, que faites vous ?</label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend3"><i
+                                        class="fas fa-question"></i></span>
+                                <input type="text" name="biography" #biography="ngModel" class="form-control"
+                                    [(ngModel)]="uuDto.biography" />
+                            </div>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-light" [disabled]="uuDtoForm.invalid" />
+                        </div>
+                    </form><br>
+                    <div style="max-width: 30%;" class="alert alert-success" role="alert" *ngIf="isUserChanged">
+                        Vos validations ont été prises en compte.
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="isUserChangedFailed">
+                        Un problème est servenu, réessayez.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--*********************************************** MES OEUVRES ************************************************-->
+        <!--************************************************************************************************************-->
+        <!--************************************************************************************************************-->
+        <div class="tab-pane fade" id="myArtwork" role="tabpanel" aria-labelledby="myArtwork-tab">
+            <h3 id="titleProfile">Mes oeuvres</h3><br>
+            
+            <!--------------------------------------------- Button trigger modal ----------------------------------------->
+            <button id="addArt" type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#exampleModalCenter">
+                Ajouter une oeuvre
+            </button>
+            <br><br>
+
+            <!--------------------------------------------- Affichage des oeuvres ----------------------------------------->
+            <div *ngIf="isListEmpty" style="text-align: center; color: red; margin: 3rem auto; padding: 2rem;">
+                <h2>Vous n'avez pas encore d'oeuvre enregistrées.</h2>
+            </div>
+            
+            <div class="tablePresentation">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Disponibilité</th>
+                            <th scope="col">Catégorie</th>
+                            <th scope="col">Sous catégorie</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Modifier</th>
+                            <th scope="col">Supprimer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let art of listArtwork">
+                            <td><img id="ppMyArt" src="{{this.artworkService.host+'getPhotoArtwork/'+ art.id}}" alt="Photo de l'oeuvre"></td>
+                            <td>{{ art.name }}</td>
+                            <td>{{ art.availability }}</td>
+                            <td>{{ art.category }}</td>
+                            <td>{{ art.subcategory }}</td>
+                            <td>{{ art.price }} €</td>
+                            <td><button type="button" class="btn btn-info">Modifier</button></td>
+                            <td><button type="button" class="btn btn-danger" (click)="userDeleteArtwork(art.id)">Supprimer</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+            <!---------------------------------------------------- MODAL ------------------------------------------------->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Ajouter une oeuvre</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form #cawDtoForm="ngForm">
+                                <div class="form-group">
+                                    <label id="labelOeuvre">Nom de l'oeuvre : </label>
+                                    <div class="input-group-prepend">
+                                        <input id="nameArt" type="text" name="name" #name="ngModel" class="form-control"
+                                        [(ngModel)]="cawDto.name" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label id="labelOeuvre">Prix : </label>
+                                    <div class="input-group-prepend">
+                                        <input id="priceArt" type="number" maxlength="10" name="price" #price="ngModel" class="form-control"
+                                        [(ngModel)]="cawDto.price" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label id="labelOeuvre">Disponibilité : </label>
+                                    <div class="input-group-prepend">
+                                        <input id="availabilityArt" type="text" name="availability" #availability="ngModel" class="form-control"
+                                        [(ngModel)]="cawDto.availability" placeholder="Dans quelle quantité cette oeuvre est elle disponible ?" required/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label id="labelOeuvre">Description : </label>
+                                    <div class="input-group-prepend">
+                                        <input id="descriptionArt" type="text" name="description" #description="ngModel" class="form-control"
+                                        [(ngModel)]="cawDto.description"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label id="labelOeuvre">Catégorie : </label>
+                                    <select id="categoryArt" class="custom-select" name="category" #category="ngModel" class="form-control"
+                                        [(ngModel)]="cawDto.category">
+                                        <option selected value="none">-</option>
+                                        <option value="DRAWING">Dessin</option>
+                                        <option value="PAINTING">Peinture</option>
+                                        <option value="PHOTO">Photo</option>
+                                        <option value="SCULPTURE">Sculpture</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label id="labelOeuvre">Sous catégorie : </label>
+                                    <select id="subcategoryArt" class="custom-select" name="subcategory" #subcategory="ngModel" class="form-control"
+                                        [(ngModel)]="cawDto.subcategory">
+                                        <option selected value="none">-</option>
+                                        <option value="ABSTRAIT">Abstrait</option>
+                                        <option value="ACRYLIQUE">Acrylique</option>
+                                        <option value="BOIS">Bois</option>
+                                        <option value="BOMBE">Bombe</option>
+                                        <option value="CIMENT">Ciment</option>
+                                        <option value="COULEURS">Couleurs</option>
+                                        <option value="CRAIE">Craie</option>
+                                        <option value="CRAYON">Crayon</option>
+                                        <option value="FEUTRE">Feutre</option>
+                                        <option value="GLACE">Glace</option>
+                                        <option value="GOUACHE">Gouache</option>
+                                        <option value="HUILE">Huile</option>
+                                        <option value="MARBRE">Marbre</option>
+                                        <option value="METAUX">Métaux</option>
+                                        <option value="NOIR_ET_BLANC">Noir et blanc</option>
+                                        <option value="PAPIER">Papier</option>
+                                        <option value="PAYSAGE">Paysage</option>
+                                        <option value="PHOTO_MANIPULEE">Photo manipulée</option>
+                                        <option value="PHOTO_NON_MANIPULEE">Photo non manipulée</option>
+                                        <option value="PLASTIQUE">Plastique</option>
+                                        <option value="PORTRAIT">Portrait</option>
+                                        <option value="REALISTE">Réaliste</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label id="labelOeuvre">Couleur dominante : </label>
+                                    <select id="colorArt" class="custom-select" name="majorColor" #majorColor="ngModel" class="form-control"
+                                    [(ngModel)]="cawDto.majorColor">
+                                        <option selected value="none">-</option>
+                                        <option value="BEIGE">Beige</option>
+                                        <option value="WHITE">Blanc</option>
+                                        <option value="BLUE">Bleu</option>
+                                        <option value="YELLOW">Jaune</option>
+                                        <option value="BROWN">Marron</option>
+                                        <option value="BLACK">Noir</option>
+                                        <option value="ORANGE">Orange</option>
+                                        <option value="PINK">Rose</option>
+                                        <option value="RED">Rouge</option>
+                                        <option value="GREEN">Vert</option>
+                                        <option value="VIOLET">Violet</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="isSigned" #isSigned="ngModel" id="isSignedOUI" value="OUI"
+                                        [(ngModel)]="cawDto.isSigned">
+                                        <label class="form-check-label" for="isSignedOUI" id="labelOeuvre">L'oeuvre est signée</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="isSigned" #isSigned="ngModel" id="isSignedNON" value="NON"
+                                        [(ngModel)]="cawDto.isSigned">
+                                        <label class="form-check-label" for="isSignedNON" id="labelOeuvre">L'oeuvre n'est pas signée</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="hasFrame" #hasFrame="ngModel" id="hasFrameOUI" value="OUI"
+                                        [(ngModel)]="cawDto.hasFrame">
+                                        <label class="form-check-label" for="hasFrameOUI">L'oeuvre possède un cadre.</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="hasFrame" #hasFrame="ngModel" id="hasFrameNON" value="NON"
+                                        [(ngModel)]="cawDto.hasFrame">
+                                        <label class="form-check-label" for="hasFrameNON">L'oeuvre ne possède pas de cadre.</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label id="labelOeuvre">Taille : </label>
+                                    <div class="input-group-prepend">
+                                        <input id="sizeArt" type="text" name="size" #size="ngModel" class="form-control"
+                                        [(ngModel)]="cawDto.size" placeholder="Estimez la taille de votre oeuvre."/>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr>
+                            <form>
+                                <div class="form-group">
+                                  <label for="exampleFormControlFile1" id="labelOeuvre">Ajouter une photo à votre oeuvre</label>
+                                  <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="addPhotoArtwork($event)">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="dissmissModal">Annuler</button>
+                            <button type="button" class="btn btn-success" (click)="createArtwork()" [disabled]="cawDto.invalid">Ajouter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--*********************************************** MES COMMANDES **********************************************-->
+        <!--************************************************************************************************************-->
+        <!--************************************************************************************************************-->
+        <div class="tab-pane fade" id="myOrder" role="tabpanel" aria-labelledby="myOrder-tab">
+            <h3 id="titleProfile">Mes commandes : </h3><br>
+        </div>
+
+        <!--*********************************************** MOT DE PASSE ***********************************************-->
+        <!--************************************************************************************************************-->
+        <!--************************************************************************************************************-->
+        <div class="tab-pane fade" id="changeMDP" role="tabpanel" aria-labelledby="changeMDP-tab">
+            <h3 id="titleProfile">Consultez ou modifiez vos informations : </h3><br>
+            <i>Utilisez le formulaire ci-dessous pour modifier le mot de passe de votre compte OnlineArt</i><br><br>
+            <form #updateUserPassForm="ngForm" (ngSubmit)="updateUserPassword()">
+                <div class="form-group">
+                    <label>Mot de passe actuel : </label>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend3"><i class="fas fa-lock"></i></span>
+                        <input type="password" name="previousPassword" #previousPassword="ngModel"
+                            class="form-control" [(ngModel)]="updateUserPass.previousPassword" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Nouveau mot de passe : </label>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend3"><i class="fas fa-lock"></i></span>
+                        <input type="password" name="newPassword" #newPassword="ngModel" class="form-control"
+                            [(ngModel)]="updateUserPass.newPassword" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Saisissez une seconde fois le nouveau mot de passe :</label>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend3"><i class="fas fa-lock"></i></span>
+                        <input (focusout)="isSamePassword()" type="password" name="checkPassword" #checkPassword="ngModel" class="form-control" [(ngModel)]="updateUserPass.checkPassword" required />
+                    </div>
+                </div>
+                <div style="max-width: 40%;" class="alert alert-danger" *ngIf="!isSameMDP">
+                    Vous n'avez pas saisi le même mot de passe !
+                </div>
+                <div *ngIf="isSameMDP">
+                    <input type="submit" class="btn btn-light" [disabled]="updateUserPassForm.invalid" />
+                </div>
+            </form><br>
+            <div style="max-width: 40%;" class="alert alert-success" role="alert" *ngIf="isPassChanged">
+                Votre mot de passe a bien été modifié.
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

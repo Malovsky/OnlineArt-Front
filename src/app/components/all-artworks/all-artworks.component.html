@@ -1,0 +1,28 @@
+<h3 id="titleProfile">Toutes les oeuvres</h3><br>
+<div class="tablePresentation">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Photo</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Disponibilité</th>
+                <th scope="col">Catégorie</th>
+                <th scope="col">Sous catégorie</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Détails</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let art of artworks">
+                <td><img id="ppMyArt" src="{{this.artworkService.host+'getPhotoArtwork/'+ art.id}}"
+                        alt="Photo de l'oeuvre"></td>
+                <td>{{ art.name }}</td>
+                <td>{{ art.availability }}</td>
+                <td>{{ art.category }}</td>
+                <td>{{ art.subcategory }}</td>
+                <td>{{ art.price }} €</td>
+                <td><button [routerLink]="['/viewArtwork', art.id]" type="button" class="btn btn-info">Détails</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
