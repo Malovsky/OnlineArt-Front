@@ -1,28 +1,126 @@
-<h3 id="titleProfile">Toutes les oeuvres</h3><br>
-<div class="tablePresentation">
-    <table class="table table-hover">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Photo</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Disponibilité</th>
-                <th scope="col">Catégorie</th>
-                <th scope="col">Sous catégorie</th>
-                <th scope="col">Prix</th>
-                <th scope="col">Détails</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let art of artworks">
-                <td><img id="ppMyArt" src="{{this.artworkService.host+'getPhotoArtwork/'+ art.id}}"
-                        alt="Photo de l'oeuvre"></td>
-                <td>{{ art.name }}</td>
-                <td>{{ art.availability }}</td>
-                <td>{{ art.category }}</td>
-                <td>{{ art.subcategory }}</td>
-                <td>{{ art.price }} €</td>
-                <td><button [routerLink]="['/viewArtwork', art.id]" type="button" class="btn btn-info">Détails</button></td>
-            </tr>
-        </tbody>
-    </table>
+<div class="row">
+
+    <div class="col-md-4" id="searchBar">
+        <h3 id="titleProfile">Affiner votre recherche</h3><br>
+        <div class="input-group findArtwork">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><b>Rechercher une oeuvre</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Nom de l'oeuvre" (input)="filterArtwork()" [(ngModel)]="artName" name="artName">
+        </div>
+        <div class="findArtwork">
+            <label id="labelOeuvre">Catégorie : </label>
+            <select id="categoryArt" class="custom-select" (change)="filterArtwork()" [(ngModel)]="artCategory" name="artCategory" class="form-control">
+                <option selected value="none">-</option>
+                <option value="DRAWING">Dessin</option>
+                <option value="PAINTING">Peinture</option>
+                <option value="PHOTO">Photo</option>
+                <option value="SCULPTURE">Sculpture</option>
+            </select>
+        </div>
+        <div class="findArtwork">
+            <label id="labelOeuvre">Sous catégorie : </label>
+            <select id="subcategoryArt" class="custom-select" (change)="filterArtwork()" [(ngModel)]="artSubCategroy" name="artSubCategroy" class="form-control">
+                <option selected value="none">-</option>
+                <option value="ABSTRAIT">Abstrait</option>
+                <option value="ACRYLIQUE">Acrylique</option>
+                <option value="BOIS">Bois</option>
+                <option value="BOMBE">Bombe</option>
+                <option value="CIMENT">Ciment</option>
+                <option value="COULEURS">Couleurs</option>
+                <option value="CRAIE">Craie</option>
+                <option value="CRAYON">Crayon</option>
+                <option value="FEUTRE">Feutre</option>
+                <option value="GLACE">Glace</option>
+                <option value="GOUACHE">Gouache</option>
+                <option value="HUILE">Huile</option>
+                <option value="MARBRE">Marbre</option>
+                <option value="METAUX">Métaux</option>
+                <option value="NOIR_ET_BLANC">Noir et blanc</option>
+                <option value="PAPIER">Papier</option>
+                <option value="PAYSAGE">Paysage</option>
+                <option value="PHOTO_MANIPULEE">Photo manipulée</option>
+                <option value="PHOTO_NON_MANIPULEE">Photo non manipulée</option>
+                <option value="PLASTIQUE">Plastique</option>
+                <option value="PORTRAIT">Portrait</option>
+                <option value="REALISTE">Réaliste</option>
+            </select>
+        </div>
+        <div class="findArtwork">
+            <label id="labelOeuvre">Couleur dominante : </label>
+            <select id="colorArt" class="custom-select" (change)="filterArtwork()" [(ngModel)]="artColor" name="artColor" class="form-control">
+                <option selected value="none">-</option>
+                <option value="BEIGE">Beige</option>
+                <option value="WHITE">Blanc</option>
+                <option value="BLUE">Bleu</option>
+                <option value="YELLOW">Jaune</option>
+                <option value="BROWN">Marron</option>
+                <option value="BLACK">Noir</option>
+                <option value="ORANGE">Orange</option>
+                <option value="PINK">Rose</option>
+                <option value="RED">Rouge</option>
+                <option value="GREEN">Vert</option>
+                <option value="VIOLET">Violet</option>
+            </select>
+        </div>
+        <hr style="max-width: 80%; font-weight: 900;">
+        <div class="findArtwork">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" (change)="filterArtwork()" [(ngModel)]="artIsSigned" name="artIsSigned" id="isSignedOUI" value="OUI">
+                <label class="form-check-label" for="isSignedOUI" id="labelOeuvre">Oeuvre signée</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" (change)="filterArtwork()" [(ngModel)]="artIsSigned" name="artIsSigned" id="isSignedNON" value="NON">
+                <label class="form-check-label" for="isSignedNON" id="labelOeuvre">Oeuvre non signée</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" (change)="filterArtwork()" [(ngModel)]="artIsSigned" name="artIsSigned" id="isSignedNone" value="none">
+                <label class="form-check-label" for="isSignedNone" id="labelOeuvre">Peu importe</label>
+            </div>
+        </div>
+        <hr style="max-width: 80%;">
+        <div class="findArtwork">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" (change)="filterArtwork()" [(ngModel)]="artHasFrame" name="artHasFrame" id="hasFrameOUI" value="OUI">
+                <label class="form-check-label" for="hasFrameOUI">Une oeuvre encadrée.</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" (change)="filterArtwork()" [(ngModel)]="artHasFrame" name="artHasFrame" id="hasFrameNON" value="NON">
+                <label class="form-check-label" for="hasFrameNON">Une oeuvre non encadrée.</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" (change)="filterArtwork()" [(ngModel)]="artHasFrame" name="artHasFrame" id="hasFrameNone" value="none">
+                <label class="form-check-label" for="hasFrameNone">Peu importe</label>
+            </div>
+        </div>
+        <hr style="max-width: 80%; font-weight: 900;">
+        <div class="input-group findArtwork">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id=""><b>Prix maximum</b></span>
+            </div>
+            <input class="form-control" type="number" placeholder="Prix maximum en €" (input)="filterArtwork()" [(ngModel)]="artPrice" name="artPrice">
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <h3 id="titleProfile">Toutes les oeuvres</h3><br>
+        <div class="row" id="presentationArtworks">
+            <div *ngFor="let art of artworks" class="card">
+                <div>
+                    <img class="card-img-top img-responsive" src="{{this.artworkService.host+'getPhotoArtwork/'+ art.id}}" alt="Photo de l'oeuvre">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ art.name }}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ art.category }}</li>
+                    <li class="list-group-item">{{ art.subcategory }}</li>
+                    <li class="list-group-item">{{ art.price }} €</li>
+                </ul>
+                <div class="card-body">
+                    <a [routerLink]="['/viewArtwork', art.id]" class="card-link">Détails de l'oeuvre</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

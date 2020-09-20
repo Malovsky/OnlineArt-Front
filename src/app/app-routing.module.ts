@@ -9,6 +9,7 @@ import { AllArtworksComponent } from './components/all-artworks/all-artworks.com
 import { AdministrationComponent } from './components/administration/administration.component';
 import { ViewArtistComponent } from './components/viewArtist/view-artist/view-artist.component';
 import { ViewArtworkComponent } from './components/viewArtwork/view-artwork/view-artwork.component';
+import { PanierComponent } from './components/panier/panier/panier.component';
 
 
 const routes: Routes = [
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: 'viewArtwork/:id',
     component: ViewArtworkComponent
+  },
+  {
+    path: 'panier',
+    component: PanierComponent
   }
 ];
 

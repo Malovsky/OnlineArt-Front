@@ -1,1 +1,68 @@
-<p>view-artwork works!</p>
+<div class="row">
+    <div class="col-md-3">
+        <div>
+            <h3 id="titleProfile">L'oeuvre</h3>
+            <div class="descriptionArtDetails">
+                <label>Description</label>
+                <p>{{ artworkDetail.description }}</p>
+            </div>
+            <div class="descriptionArtDetails">
+                <label>Catégorie</label>
+                <p>{{ artworkDetail.category }}</p>
+            </div>
+            <div class="descriptionArtDetails">
+                <label>Sous catégorie</label>
+                <p>{{ artworkDetail.subcategory }}</p>
+            </div>
+            <div class="descriptionArtDetails">
+                <label>Couleur</label>
+                <p>{{ artworkDetail.majorColor }}</p>
+            </div>
+            <div class="descriptionArtDetails">
+                <label>Taille</label>
+                <p>{{ artworkDetail.size }}</p>
+            </div>
+            <div class="descriptionArtDetails">
+                <label>Disponibilité</label>
+                <p>{{ artworkDetail.availability }} unité(s)</p>
+            </div>
+            <div *ngIf="isSigned" class="descriptionArtDetails">
+                <p>L'oeuvre est signée.</p>
+            </div>
+            <div *ngIf="!isSigned" class="descriptionArtDetails">
+                <p>L'oeuvre n'est pas signée.</p>
+            </div>
+            <div *ngIf="hasFrame" class="descriptionArtDetails">
+                <p>L'oeuvre possède un cadre.</p>
+            </div>
+            <div *ngIf="!hasFrame" class="descriptionArtDetails">
+                <p>L'oeuvre ne possède pas de cadre.</p>
+            </div>
+            <div class="descriptionArtDetails" style="text-align: center;">
+                <label>Prix</label>
+                <p>{{ artworkDetail.price }} €</p>
+            </div>
+            <button (click)="addToBasket(artworkDetail.id)" type="button" class="btn btn-warning btn-lg buttonDetailsArt">Ajouter au panier</button>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h1 id="artworkDetailName"><i>« {{ artworkDetail.name }} »</i></h1>
+        <div>
+            <img id="artworkDetailPhoto" class="card-img-top img-responsive" src="{{this.artworkService.host+'getPhotoArtwork/'+ artworkDetail.id}}" alt="Photo de l'oeuvre">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div>
+            <h3 id="titleProfile">L'artiste</h3>
+            <div class="descriptionArtDetailsBis">
+                <label>Pseudo</label>
+                <p>{{ ownerOfArt.username }}</p>
+            </div>
+            <div class="descriptionArtDetailsBis">
+                <label>Email</label>
+                <p>{{ ownerOfArt.email }}</p>
+            </div>
+            <button [routerLink]="['/viewArtist', ownerOfArt.id]" type="button" class="btn btn-info btn-lg buttonDetailsArt">Détails de l'artiste</button>
+        </div>
+    </div>
+</div>

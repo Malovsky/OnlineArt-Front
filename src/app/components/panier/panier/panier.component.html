@@ -1,0 +1,27 @@
+<div id="recaPanier">
+    <h3 id="titleProfile">Votre Panier</h3><br>
+        <h1 id="nothingInBasket">Vous n'avez rien ajouté dans votre panier. Vous pouvez ajouter des oeuvres via leur page de détails.</h1>
+    <table class="table table-hover" style="margin: 6rem 0rem;">
+        <thead>
+            <tr>
+                <th scope="col">Photo</th>
+                <th scope="col">Catégorie</th>
+                <th scope="col">Prix</th>
+                <th scope="col" class="colDelete">Retirer du panier</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let art of artInBasket">
+                <td><img id="ppMyArt" src="{{this.artworkService.host+'getPhotoArtwork/'+ art.id}}" alt="Photo de l'oeuvre"></td>
+                <td>{{ art.category }}</td>
+                <td>{{ art.price }} €</td>
+                <td><button type="button" class="btn btn-danger" (click)="deleteArtworkFromBasket(art.id)">Supprimer</button></td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td>TOTAL : {{ totalBasket }} €</td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-warning" (click)="passOrder()">Passer commande</button>
+</div>

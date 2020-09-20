@@ -18,6 +18,7 @@ import { ArtworksByCategoryComponent } from './components/artworks-by-category/a
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { ViewArtistComponent } from './components/viewArtist/view-artist/view-artist.component';
 import { ViewArtworkComponent } from './components/viewArtwork/view-artwork/view-artwork.component';
+import { PanierComponent } from './components/panier/panier/panier.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ViewArtworkComponent } from './components/viewArtwork/view-artwork/view
     AllArtworksComponent,
     ArtworksByCategoryComponent,
     ViewArtistComponent,
-    ViewArtworkComponent
+    ViewArtworkComponent,
+    PanierComponent
   ],
   imports: [
     BrowserModule,

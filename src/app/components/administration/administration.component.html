@@ -18,6 +18,12 @@
         <!--************************************************************************************************************-->
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <h3 id="titleProfile">Tous les utilisateurs</h3><br>
+        <div class="input-group" style="max-width: 50%; margin: 1rem auto;">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="">Rechercher un artiste</span>
+            </div>
+            <input type="text" class="form-control" placeholder="nom, prénom, pseudo, email" (input)="searchArtist(textSearchAdmin)" [(ngModel)]="textSearchAdmin" name="textSearchAdmin">
+        </div>
         <div class="tablePresentation">
             <table class="table table-hover">
                 <thead class="thead-dark">
@@ -53,6 +59,12 @@
         <!--************************************************************************************************************-->
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
         <h3 id="titleProfile">Toutes les oeuvres</h3><br>
+        <div class="input-group findArtwork" style="max-width: 50%; margin: 1rem auto;">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><b>Rechercher une oeuvre</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Nom de l'oeuvre" (input)="searchArtworkAdmin(artNameAdmin)" [(ngModel)]="artNameAdmin" name="artNameAdmin">
+        </div>
         <div class="tablePresentation">
             <table class="table table-hover">
                 <thead class="thead-dark">

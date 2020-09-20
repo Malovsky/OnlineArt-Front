@@ -71,4 +71,8 @@ export class UserService {
     return this.http.get(API_URL + 'getPhotoProfile/' + id);
   }
 
+  getOwnerById(id: number): Observable<any> {
+    return this.http.get(API_URL + "getOwnerById/" + id);
+  }
+
 }

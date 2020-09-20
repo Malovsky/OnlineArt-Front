@@ -42,6 +42,6 @@ export class AllArtistsComponent implements OnInit {
     }
   }
 
-
+ 
 
 }

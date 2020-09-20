@@ -13,18 +13,8 @@
                 </li>
             </div>
             <div *ngIf="!showAdminBoard">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Œuvres
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" [routerLink]="['/allArtworks']">Toutes les oeuvres</a>
-                        <a class="dropdown-item" [routerLink]="['artwokrsByCategory/Dessin']">Dessins</a>
-                        <a class="dropdown-item" [routerLink]="['artwokrsByCategory/Peinture']">Peintures</a>
-                        <a class="dropdown-item" [routerLink]="['artwokrsByCategory/Photo']">Photos</a>
-                        <a class="dropdown-item" [routerLink]="['artwokrsByCategory/Sculpture']">Sculptures</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/allArtworks']">Oeuvres</a>
                 </li>
             </div>
             <div *ngIf="!showAdminBoard">
@@ -38,6 +28,9 @@
                 </li>
             </div>
         </ul>
+        <div>
+            <button [routerLink]="['/panier']" type="button" class="btn btn-light mr-sm-2"><i class="fas fa-shopping-cart"></i></button>
+        </div>
         <div *ngIf="!isLoggedIn">
             <button type="button" class="btn btn-outline-light mr-sm-2" [routerLink]="['/login']">Connexion</button>
         </div>

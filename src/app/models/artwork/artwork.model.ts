@@ -31,3 +31,8 @@ export class CreateArtWorkDto {
     public hasFrame: boolean;
     public size: string;
 }
+
+export class ArtworkPanierDto {
+    public id: string;
+    public quantity: number;
+}

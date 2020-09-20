@@ -29,6 +29,20 @@ th, td {
     vertical-align: middle!important;
 }
 
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 2px solid #343a40;
+}
+
+div.descriptionArtDetails>p {
+    margin: 0px;
+}
+div.descriptionArtDetailsBis>p {
+    margin: 0px;
+}
+
 /***************************************************** CLASSES *****************************************************/
 
 .footerrow {
@@ -100,6 +114,42 @@ th, td {
 .labelDetailArtist {
     color: #007BFF;
 }
+
+.findArtwork {
+    max-width: 80%;
+    margin: 1rem auto;
+}
+
+.card {
+    margin: 2rem auto;
+    width: 18rem;
+    height: auto;
+    display: inline-table;
+}
+
+.descriptionArtDetails {
+    margin: 0.5rem 4rem;
+    padding: 0.1rem 0.5rem;
+    background-color: rgb(255, 251, 230);
+    text-align: center;
+}
+
+.descriptionArtDetailsBis {
+    margin: 0.5rem 4rem;
+    padding: 0.1rem 0.5rem;
+    background-color: rgb(231, 252, 255);
+    text-align: center;
+}
+
+.buttonDetailsArt {
+    margin: 0.5rem 4rem; 
+    padding: 0.1rem 0.5rem;
+}
+
+.colDelete {
+    color: red;
+}
+
 
 /***************************************************** IDS *****************************************************/
 
@@ -239,6 +289,7 @@ th, td {
     color: #007BFF;
     text-align: center;
     padding: 1rem;
+    margin : 1rem auto
 }
 
 #backgroundRowTwo {
@@ -300,6 +351,41 @@ th, td {
 #detailsArtist {
     margin: 2rem;
     font-size: larger;
+}
+
+#presentationArtworks {
+    margin: 1rem auto;
+    width: 90%;
+}
+
+#searchBar {
+    background-color: #ebebeb;
+}
+
+#artworkDetailName {
+    text-align: center;
+    margin: 2rem auto;
+    color: #007BFF;
+}
+
+#artworkDetailPhoto {
+    height: auto;
+    width: 80%;
+    margin: 3rem auto 3rem auto;
+    display: block;
+    border: rgb(0, 0, 0) double 20px;
+    -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 0px 50px -30px #000000; 
+    box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 0px 0px 50px -30px #000000;
+}
+
+#recaPanier {
+    width: 50%;
+    margin: 3rem auto;
+}
+
+#nothingInBasket {
+    color: red;
+    margin: 5rem 5rem;
 }
 
 @media (max-width: 600px) {

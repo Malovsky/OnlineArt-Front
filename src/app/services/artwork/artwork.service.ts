@@ -45,4 +45,13 @@ export class ArtworkService {
     return this.http.delete(API_URL + id);
   }
 
+  getArtworkById(id: number): Observable<any> {
+    return this.http.get(API_URL + id);
+  }
+
+  getMultipleArtworkById(listIdsArtwork) {
+    const body = JSON.stringify(listIdsArtwork);
+    return this.http.post(API_URL + 'getMultipleArtworkById', body, httpOptions);
+  }
+
 }

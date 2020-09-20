@@ -55,21 +55,3 @@ export class SharedService {
   }
 
 }
-
-/* 
-
-public observeBasket$: BehaviorSubject<any> = new BehaviorSubject(null);
-
-  public sendPanier(panier: number) {
-      this.observeBasket$.next(panier);
-  }
-
-  clearPanier() {
-      this.subject.next();
-  }
-
-  public getPanier(): Observable<any> {
-      return this.observeBasket$.asObservable();
-  }
-
-*/

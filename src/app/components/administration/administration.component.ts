@@ -12,9 +12,13 @@ export class AdministrationComponent implements OnInit {
 
   /* TOUS LES UTILISATEURS */
   public users: any;
+  public saveUsersAdmin: any;
+  public textSearchAdmin: String;
 
   /* TOUTES LES OEUVRES */
   public artworks: any;
+  public artworksSave: any;
+  public artNameAdmin: String;
 
   /* TOUTES LES COMMANDES */
   public commandes: any;
@@ -33,6 +37,7 @@ export class AdministrationComponent implements OnInit {
     this.userService.getAllUsersDtype().subscribe(
       data => {
         this.users = data;
+        this.saveUsersAdmin = data;
       },
       err => console.log(err)
     );
@@ -54,6 +59,7 @@ export class AdministrationComponent implements OnInit {
     this.artworkService.getAllArtworks().subscribe(
       data => {
         this.artworks = data;
+        this.artworksSave = data;
       },
       err => console.log(err)
     );
@@ -67,8 +73,8 @@ export class AdministrationComponent implements OnInit {
       },
       err => console.error(err)
     );
-  }
-
+  } 
+  
   /******* COMMANDES *******/
   getAllCommandes() {
     this.commandeService.getAllOrders().subscribe(
@@ -89,7 +95,26 @@ export class AdministrationComponent implements OnInit {
     );
   }
 
+  searchArtist(textSearch: String) {
+    this.users = this.saveUsersAdmin;
+    if (this.textSearchAdmin != "") {
+      this.users = this.users.filter(user =>
+          user.username.toUpperCase().includes(textSearch.toUpperCase()) 
+          || (user.lastName != null && user.lastName.toUpperCase().includes(textSearch.toUpperCase()))
+          || (user.firstName != null && user.firstName.toUpperCase().includes(textSearch.toUpperCase()))
+          || (user.email != null && user.email.toUpperCase().includes(textSearch.toUpperCase()))
+      );
+    }
+  }
 
+  searchArtworkAdmin(artNameAdmin: String) {
+    this.artworks = this.artworksSave;
+    if (this.artNameAdmin != "") {
+      this.artworks = this.artworks.filter(artwork =>
+        artwork.name.toUpperCase().includes(artNameAdmin.toUpperCase())
+      );
+    }
+  }
 
 
 }
