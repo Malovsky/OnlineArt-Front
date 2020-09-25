@@ -380,12 +380,16 @@ div.descriptionArtDetailsBis>p {
 
 #recaPanier {
     width: 50%;
-    margin: 3rem auto;
+    margin: 3rem auto 5rem auto;
 }
 
 #nothingInBasket {
     color: red;
     margin: 5rem 5rem;
+}
+
+#myOrder {
+    margin: 5rem auto 23rem auto;
 }
 
 @media (max-width: 600px) {

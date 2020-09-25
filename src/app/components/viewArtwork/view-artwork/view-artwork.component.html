@@ -25,6 +25,7 @@
             <div class="descriptionArtDetails">
                 <label>Disponibilité</label>
                 <p>{{ artworkDetail.availability }} unité(s)</p>
+                <p *ngIf="artworkDetail.availability < 1" style="color: red; font-weight: bold;">Indisponible à l'achat</p>
             </div>
             <div *ngIf="isSigned" class="descriptionArtDetails">
                 <p>L'oeuvre est signée.</p>
@@ -38,11 +39,11 @@
             <div *ngIf="!hasFrame" class="descriptionArtDetails">
                 <p>L'oeuvre ne possède pas de cadre.</p>
             </div>
-            <div class="descriptionArtDetails" style="text-align: center;">
+            <div class="descriptionArtDetails">
                 <label>Prix</label>
                 <p>{{ artworkDetail.price }} €</p>
             </div>
-            <button (click)="addToBasket(artworkDetail.id)" type="button" class="btn btn-warning btn-lg buttonDetailsArt">Ajouter au panier</button>
+            <button *ngIf="artworkDetail.availability > 0 && isLoggedIn" (click)="addToBasket(artworkDetail.id)" type="button" class="btn btn-warning btn-lg buttonDetailsArt">Ajouter au panier</button>
         </div>
     </div>
     <div class="col-md-6">

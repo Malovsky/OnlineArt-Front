@@ -58,6 +58,7 @@ export class AllArtworksComponent implements OnInit {
     if (name != null) {
       this.artworks = this.artworks.filter(artwork =>
         artwork.name.toUpperCase().includes(name.toUpperCase())
+        || artwork.user.username.toUpperCase().includes(name.toUpperCase())
       );
     }
   }
@@ -88,12 +89,16 @@ export class AllArtworksComponent implements OnInit {
 
   filterSigne(signe: any) {
     if (signe == "OUI") {
+      console.log("signe oui");
+      console.log(this.artworks);
+      
       this.artworks = this.artworks.filter(artwork =>
-        artwork.isSigned
+        artwork.signed
       );
     } else if (signe == "NON") {
+      console.log("signe non");
       this.artworks = this.artworks.filter(artwork =>
-        !artwork.isSigned
+        !artwork.signed
       );
     }
   }

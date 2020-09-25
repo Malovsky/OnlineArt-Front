@@ -97,6 +97,33 @@
         <!--************************************************************************************************************-->
     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
         <h3 id="titleProfile">Toutes les commandes</h3><br>
-
+        <div class="input-group findArtwork" style="max-width: 50%; margin: 1rem auto;">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><b>Rechercher une Commande</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Id de la commande, pseudo du client" (input)="searchCommandeAdmin(CommandeSearchAdmin)" [(ngModel)]="CommandeSearchAdmin" name="CommandeSearchAdmin">
+        </div>
+        <div class="tablePresentation">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#ID</th>
+                        <th>Client</th>
+                        <th scope="col">Nombre de produit</th>
+                        <th scope="col">Prix Total</th>
+                        <th>Supprimer Commande</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let command of commandes">
+                        <th scope="row">{{ command.id }}</th>
+                        <th scope="row">{{ command.userDetail.username }}</th>
+                        <td>{{ command.nbItem }}</td>
+                        <td>{{ command.amount }}</td>
+                        <td><button type="button" class="btn btn-danger" (click)="deleteCommande(command.id)">Supprimer</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

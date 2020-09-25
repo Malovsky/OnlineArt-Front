@@ -22,6 +22,8 @@ export class AdministrationComponent implements OnInit {
 
   /* TOUTES LES COMMANDES */
   public commandes: any;
+  public commandesSave: any;
+  public CommandeSearchAdmin: String;
 
 
   constructor(private userService: UserService, private artworkService: ArtworkService, private commandeService: CommandesService) { }
@@ -49,6 +51,7 @@ export class AdministrationComponent implements OnInit {
         console.log(data),
         this.getAllUsers();
         this.getAllArtworks();
+        this.getAllCommandes();
       },
       err => console.error(err)
     );
@@ -80,6 +83,7 @@ export class AdministrationComponent implements OnInit {
     this.commandeService.getAllOrders().subscribe(
       data => {
         this.commandes = data;
+        this.commandesSave = data;
       },
       err => console.log(err)
     );
@@ -90,6 +94,7 @@ export class AdministrationComponent implements OnInit {
       data => {
         console.log(data),
         this.commandes = data;
+        this.getAllCommandes();
       },
       err => console.log(err)
     );
@@ -103,6 +108,16 @@ export class AdministrationComponent implements OnInit {
           || (user.lastName != null && user.lastName.toUpperCase().includes(textSearch.toUpperCase()))
           || (user.firstName != null && user.firstName.toUpperCase().includes(textSearch.toUpperCase()))
           || (user.email != null && user.email.toUpperCase().includes(textSearch.toUpperCase()))
+      );
+    }
+  }
+
+  searchCommandeAdmin(CommandeSearchAdmin: String) {
+    this.commandes = this.commandesSave;
+    if (this.CommandeSearchAdmin != "") {
+      this.commandes = this.commandes.filter(commande =>
+        commande.id.toUpperCase().includes(CommandeSearchAdmin.toUpperCase())
+        || commande.userDetail.username.toUpperCase().includes(CommandeSearchAdmin.toUpperCase())
       );
     }
   }

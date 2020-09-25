@@ -6,7 +6,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text"><b>Rechercher une oeuvre</b></span>
             </div>
-            <input type="text" class="form-control" placeholder="Nom de l'oeuvre" (input)="filterArtwork()" [(ngModel)]="artName" name="artName">
+            <input type="text" class="form-control" placeholder="Nom de l'oeuvre ou de l'artiste" (input)="filterArtwork()" [(ngModel)]="artName" name="artName">
         </div>
         <div class="findArtwork">
             <label id="labelOeuvre">Catégorie : </label>
@@ -67,15 +67,15 @@
         <div class="findArtwork">
             <div class="form-check">
                 <input class="form-check-input" type="radio" (change)="filterArtwork()" [(ngModel)]="artIsSigned" name="artIsSigned" id="isSignedOUI" value="OUI">
-                <label class="form-check-label" for="isSignedOUI" id="labelOeuvre">Oeuvre signée</label>
+                <label class="form-check-label" for="isSignedOUI">Oeuvre signée</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" (change)="filterArtwork()" [(ngModel)]="artIsSigned" name="artIsSigned" id="isSignedNON" value="NON">
-                <label class="form-check-label" for="isSignedNON" id="labelOeuvre">Oeuvre non signée</label>
+                <label class="form-check-label" for="isSignedNON">Oeuvre non signée</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" (change)="filterArtwork()" [(ngModel)]="artIsSigned" name="artIsSigned" id="isSignedNone" value="none">
-                <label class="form-check-label" for="isSignedNone" id="labelOeuvre">Peu importe</label>
+                <label class="form-check-label" for="isSignedNone">Peu importe</label>
             </div>
         </div>
         <hr style="max-width: 80%;">
@@ -110,7 +110,8 @@
                     <img class="card-img-top img-responsive" src="{{this.artworkService.host+'getPhotoArtwork/'+ art.id}}" alt="Photo de l'oeuvre">
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">{{ art.name }}</h5>
+                    <h5 class="card-title" style="color: #005fc5;">{{ art.name }}</h5>
+                    <span>Artiste : {{ art.user.username }}</span>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">{{ art.category }}</li>

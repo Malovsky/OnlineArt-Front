@@ -27,6 +27,7 @@
         <div class="tab-pane fade show active" id="infos" role="tabpanel" aria-labelledby="infos-tab">
             <div class="row">
                 <div class="col-md-4 userPhotoPage" style="background-color: #EDEDED;">
+                    <!-- <img *ngIf="!uuDto.photoProfile" id="ppMyAccount" src="assets/images/Inconnu.png" alt="Photo de Profil inconnu"><br> -->
                     <img id="ppMyAccount" src="{{this.userService.host+'getPhotoProfile/'+uuDto.id}}" alt="Photo de profile"><br>
                     <form>
                         <div class="form-group" style="display: block; margin: 1rem auto; max-width: 50%;">
@@ -143,7 +144,6 @@
                             <th scope="col">Catégorie</th>
                             <th scope="col">Sous catégorie</th>
                             <th scope="col">Prix</th>
-                            <th scope="col">Modifier</th>
                             <th scope="col">Supprimer</th>
                         </tr>
                     </thead>
@@ -155,7 +155,6 @@
                             <td>{{ art.category }}</td>
                             <td>{{ art.subcategory }}</td>
                             <td>{{ art.price }} €</td>
-                            <td><button type="button" class="btn btn-info">Modifier</button></td>
                             <td><button type="button" class="btn btn-danger" (click)="userDeleteArtwork(art.id)">Supprimer</button></td>
                         </tr>
                     </tbody>
@@ -315,6 +314,24 @@
         <!--************************************************************************************************************-->
         <div class="tab-pane fade" id="myOrder" role="tabpanel" aria-labelledby="myOrder-tab">
             <h3 id="titleProfile">Mes commandes : </h3><br>
+            <div class="tablePresentation">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#ID</th>
+                            <th scope="col">Nombre de produit</th>
+                            <th scope="col">Prix Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let command of listCommandes">
+                            <th scope="row">{{ command.id }}</th>
+                            <td>{{ command.nbItem }}</td>
+                            <td>{{ command.amount }} €</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!--*********************************************** MOT DE PASSE ***********************************************-->

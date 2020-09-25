@@ -12,6 +12,8 @@ export class PanierService {
   public artworkPanier = [];
   public addArtwork: any;
 
+  public listClearPanier = [];
+
   constructor() { }
 
   public getArtworkPanier(): Observable<any> {
@@ -26,6 +28,10 @@ export class PanierService {
     return this.addArtwork$.asObservable();
   }
 
+  public clearPanier() {
+    this.artworkPanier$.next(this.listClearPanier);
+    this.artworkPanier = this.listClearPanier;
+  }
 
   public sendAddArtwork(addArtworkId: any) {
     if (this.artworkPanier.length == 0) {

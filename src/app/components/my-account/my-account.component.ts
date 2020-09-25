@@ -12,6 +12,7 @@ import { CreateArtWorkDto } from 'src/app/models/artwork/artwork.model';
 import { ArtworkService } from 'src/app/services/artwork/artwork.service';
 import { ThrowStmt } from '@angular/compiler';
 import { element } from 'protractor';
+import { CommandesService } from 'src/app/services/commandes/commandes.service';
 
 @Component({
   selector: 'app-my-account',
@@ -38,6 +39,9 @@ export class MyAccountComponent implements OnInit {
   public listArtwork;
   public isListEmpty = true;
   public idUser: String;
+   
+  /* CONSULTER MES COMMANDES */
+  public listCommandes;
 
   /* AJOUTER UNE OEUVRE */
   public cawDto: CreateArtWorkDto;
@@ -59,7 +63,12 @@ export class MyAccountComponent implements OnInit {
   isPassChanged = false;
   isPassChangedFailed = false;
 
-  constructor(private userService: UserService, private artworkService: ArtworkService , private tokenService: TokenService, public sharedService: SharedService, private router: Router) { }
+  constructor(private userService: UserService,
+    private artworkService: ArtworkService,
+    private tokenService: TokenService,
+    public sharedService: SharedService,
+    private router: Router,
+    private commandeService: CommandesService) { }
 
   ngOnInit(): void {
     /* upadate user */
@@ -70,6 +79,7 @@ export class MyAccountComponent implements OnInit {
     this.cawDto = new CreateArtWorkDto();
     this.getUsersInfos();
     this.getMyArtworks();
+    this.getMyOrders();
   } 
 
   /* MES INFORMATIONS CONSULTATION */
@@ -220,18 +230,19 @@ export class MyAccountComponent implements OnInit {
       }, err => {
         this.errorMessage = err.error.message;
         console.log(this.errorMessage);
-        this.isArtUpload = false;
+        this.isArtUpload = false; 
         this.isArtUploadFailed = true;
       });
     }
   }
 
+  /* CONSULTER MES COMMANDES */
 
-
-
-
-
-
+  getMyOrders() {
+    this.commandeService.getMyOrders(this.tokenService.getUser().id).subscribe(data => {
+      this.listCommandes = data;
+    }, err => console.error(err));
+  }
 
 
 
