@@ -46,7 +46,7 @@ export class ViewArtworkComponent implements OnInit {
       this.ownerOfArt = data;
     }, err => console.error(err));
   }
-
+ 
   addToBasket(id: any) {
     console.log(id);
     this.panierService.sendAddArtwork(id);
